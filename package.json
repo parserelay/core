@@ -1,0 +1,42 @@
+{
+  "name": "@parserelay/core",
+  "version": "0.0.1",
+  "description": "Shared scan request/response contract for ParseRelay (types + runtime request schema).",
+  "license": "MIT",
+  "homepage": "https://parserelay.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parserelay/core.git"
+  },
+  "bugs": { "url": "https://github.com/parserelay/core/issues" },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema.d.ts",
+      "import": "./dist/schema.js"
+    }
+  },
+  "files": ["dist"],
+  "publishConfig": { "access": "public" },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^3.0.0"
+  }
+}
