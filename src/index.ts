@@ -78,7 +78,7 @@ export type ScanSchema = string[] | JsonSchema;
 /**
  * Minimal JSON Schema shape — intentionally loose; full Schema is accepted as the escape hatch.
  *
- * The schema does triple duty (see `docs/SCAN_API.md`): output validation,
+ * The schema does triple duty: output validation,
  * confidence-gate derivation (`minimum`/`maximum`/`enum`), and per-field prompting
  * (`description` is fed verbatim into the rescue call as the extraction instruction).
  */
