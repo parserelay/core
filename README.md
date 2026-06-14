@@ -9,4 +9,6 @@ import { isEnvelope } from "@parserelay/core";
 
 Design rule: the **envelope (`ScanEnvelope`) is stable and additive-only**. The **engine is a swappable parameter** behind it — new extraction modes ship without breaking existing callers.
 
-The types exported here are the canonical definition of the `scan` contract.
+The types exported here are the canonical definition of the `scan` contract. See
+[docs/SCAN_API.md](docs/SCAN_API.md) for the full reference and
+[docs/ERRORS.md](docs/ERRORS.md) for error codes.
