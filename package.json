@@ -1,6 +1,6 @@
 {
   "name": "@parserelay/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Shared scan request/response contract for ParseRelay (types + runtime request schema).",
   "license": "MIT",
   "homepage": "https://parserelay.app",
