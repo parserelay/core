@@ -45,6 +45,7 @@ describe("isEnvelope", () => {
       status: "dry_run",
       would_rescue: [{ field: "vat", reason: "out_of_range" }],
       scan_credits: 1,
+      ocr_credits: 0.11,
       estimated_model_credits: 3,
     };
     expect(isEnvelope(dry)).toBe(false);
