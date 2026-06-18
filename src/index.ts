@@ -338,17 +338,29 @@ export interface DryRunFlag {
 }
 
 /**
- * Preview-only response (returned when `request.dry_run` is `true`). No money spent.
- * Lists the fields that *would* be rescued and the estimated cost if run for real.
+ * Preview-only response (returned when `request.dry_run` is `true`). Lists the
+ * fields that *would* be rescued and the estimated cost if run for real.
+ *
+ * A dry run computes `would_rescue` from real OCR confidence scores, so it runs OCR
+ * for real (the model rescue is what it skips). On the hosted tier that OCR is on
+ * our key, so a dry run bills the OCR credits it actually consumed (`ocr_credits`)
+ * — never the plumbing or the model. On self-host (your own keys) there's no
+ * balance, so nothing is billed and `ocr_credits` is informational only.
  */
 export interface ScanDryRun {
   scan_id: string;
   status: ScanDryRunStatus;
   /** Fields that would trigger a paid rescue call, and why. */
   would_rescue: DryRunFlag[];
-  /** Plumbing credits this scan would bill (1 per page; 0 if it would fail). */
+  /** Plumbing credits a *real* run would bill (1 per page; 0 if it would fail). Not charged on a dry run. */
   scan_credits: number;
-  /** Estimated model credits if run for real on our keys (token→credit map). */
+  /**
+   * OCR credits actually charged for this dry run — the OCR backend ran on our key
+   * to produce `would_rescue`. Omitted when zero (OCR didn't run or didn't cost).
+   * The only credits a dry run spends; on self-host it's informational (unbilled).
+   */
+  ocr_credits?: number;
+  /** Estimated model credits if run for real on our keys (token→credit map). Not charged on a dry run. */
   estimated_model_credits?: number;
 }
 
